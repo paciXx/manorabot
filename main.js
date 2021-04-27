@@ -4,7 +4,7 @@ const ytdl = require("ytdl-core");
 
 const client = new Discord.Client();
 
-const prefix = '.manora';
+const prefix = '!p';
 
 const queue = new Map();
 
@@ -12,7 +12,7 @@ const fs = require('fs');
 
 client.commands = new Discord.Collection();
 
-const token = 'NzQ5NTk2OTk4MjEwMDI3NTkx.X0uSmw.oN3tfvUOkvcTKd9oN1wLoZccXlk'
+const token = ''
 
 const commandFiles = fs.readdirSync('./komendy/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles){
@@ -22,8 +22,8 @@ for(const file of commandFiles){
 }
 
 client.once("ready", () => {
-  console.log("Manora (Discord) jest online!");
-  client.user.setActivity('kanał MaTiDa.', { type: "WATCHING"}).catch(console.error);
+  console.log("PRO BOT bez muzyki (Discord) jest online!");
+  client.user.setActivity('twoją starą.', { type: "WATCHING"}).catch(console.error);
 });
 
 client.once("reconnecting", () => {
@@ -51,17 +51,8 @@ client.on("message", async message => {
   } else if (message.content.startsWith(`${prefix}stop`)) {
     stop(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${prefix}youtube`)) {
-    youtube(message, serverQueue);
-    return;
-  } else if (message.content.startsWith(`${prefix}omatidzie`)) {
-    omatidzie(message, serverQueue);
-    return;
   } else if (message.content.startsWith(`${prefix}dajmirole`)) {
     dajmirole(message, serverQueue);
-    return;
-  } else if (message.content.startsWith(`${prefix}najnowszyfilm`)) {
-    najnowszyfilm(message, serverQueue);
     return;
   } else if (message.content.startsWith(`${prefix}komendy`)) {
     komendy(message, serverQueue);
@@ -70,7 +61,7 @@ client.on("message", async message => {
     www(message, serverQueue);
     return; 
   } else {
-    message.channel.send("**Wpisz poprawną komendę!** Jeżeli nie znasz komend, *wpisz .manorakomendy*");
+    message.channel.send("**Wpisz poprawną komendę!** Jeżeli nie znasz komend, *wpisz !pkomendy*");
   } 
   
 });
@@ -81,17 +72,9 @@ client.on('message', message =>{
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase(); 
 
-  if(command === 'youtube'){
-   client.commands.get('youtube').execute(message, args);
-  }
-  else if (command == 'omatidzie'){
-   client.commands.get('omatidzie').execute(message, args);  
+  if(command === 'dajmirole'){
+   client.commands.get('dajmirole').execute(message, args);
   } 
-   else if (command == 'dajmirole'){
-       client.commands.get('dajmirole').execute(message, args);}
-       
-   else if (command == 'najnowszyfilm'){
-        client.commands.get('najnowszyfilm').execute(message, args);}
    else if (command == 'komendy'){
        client.commands.get('komendy').execute(message, args);}
    else if (command == 'www'){
